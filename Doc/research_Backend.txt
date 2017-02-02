@@ -1,0 +1,10 @@
+Playback Song objects:
+https://code.tutsplus.com/tutorials/create-a-music-player-on-android-song-playback--mobile-22778
+
+Access track in the file system:
+https://code.tutsplus.com/tutorials/create-a-music-player-on-android-project-setup--mobile-22764
+
+
+Classes:
+https://developer.android.com/reference/android/media/MediaPlayer.html
+https://developer.android.com/reference/android/media/SoundPool.html  -> allows to play multiple streams
