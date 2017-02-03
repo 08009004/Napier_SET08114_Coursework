@@ -8,8 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.io.IOException;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private MediaPlayer mPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +43,40 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Called when Play button is clicked.
+     *
+     * @param   v   the calling View instance
+     */
     public void handleClickPlay(View v) {
-        MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.brass_gavel);
-        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mPlayer.start();
+        if (this.mPlayer == null) {
+            this.mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.brass_gavel);
+            this.mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            this.mPlayer.start();
+        }
+
+        /*
+        if (!this.mPlayer.isPlaying()) {
+            try {
+                this.mPlayer.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        */
+    }
+
+    /**
+     * Called when Stop button is clicked.
+     *
+     * @param   v   the calling View instance
+     */
+    public void handleClickStop(View v) {
+        if (this.mPlayer.isPlaying()) {
+            this.mPlayer.stop();
+            this.mPlayer.release();
+            this.mPlayer = null;
+        }
     }
 }
